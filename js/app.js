@@ -172,10 +172,10 @@ Tokyo.render();
 let Dubai = {
 
     sum :0,
-    name : 'Tokyo',
-    minCust : 3,
-    maxCust : 24,
-    avg : 1.2,
+    name : 'Dubai',
+    minCust : 11,
+    maxCust : 38,
+    avg : 3.7,
     randomCustomer: [],
     avgCookies: [],
  
@@ -250,10 +250,10 @@ let Dubai = {
  let Paris = {
 
     sum :0,
-    name : 'Tokyo',
-    minCust : 3,
-    maxCust : 24,
-    avg : 1.2,
+    name : 'Paris',
+    minCust : 20,
+    maxCust : 38,
+    avg : 2.3,
     randomCustomer: [],
     avgCookies: [],
  
@@ -328,9 +328,9 @@ let Dubai = {
 
     sum :0,
     name : 'Lima',
-    minCust : 3,
-    maxCust : 24,
-    avg : 1.2,
+    minCust : 2,
+    maxCust : 16,
+    avg : 4.6,
     randomCustomer: [],
     avgCookies: [],
  
