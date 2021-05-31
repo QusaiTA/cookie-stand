@@ -1,402 +1,608 @@
 'use strict';
 
-let hours = [6,7,8,9,10,11,12,1,2,3,4,5,6,7];
+ let hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 
-let Seattle = {
-   sum :0,
-   name : 'seattle',
-   minCust : 23,
-   maxCust : 65,
-   avg : 6.3,
-   randomCustomer: [],
-   avgCookies: [],
+ function randomNumber(min, max) {
+ return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
 
-   //Generating a random custmor number for each hour .. 
+let shops = [];
+let totalPerHours = [];
 
-getRandomCustomer : function(){
-  for(let i = 0 ; i < hours.length ; i++){
-    this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
-       
-  }},
+function Shop(name, minCust, maxCust, avg){
 
-// pushing into cookies array a random number of request ..
 
-getAvgCookies : function(){
+    this.name = name;
+    this.minCust = minCust;
+    this.maxCust = maxCust;
+    this.avg = avg;
+    this.sum = 0;
+    this.randomCustomer = [];
+    this.avgCookies = [];
+
+    shops.push(this);
+    
+}
+
+Shop.prototype.getRandomCustomer = function(){
+    
+    for(let i = 0 ; i < hours.length ; i++){
+
+      this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
+      
+ }}
+
+         
+          
+          
+
+Shop.prototype.getAvgCookies = function(){
+
+
+
     for(let i = 0 ; i < this.randomCustomer.length ; i++){
         
-        this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
-        this.sum += this.randomCustomer[i]*this.avg;
-    }},
+     this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
+     this.sum += this.randomCustomer[i]*this.avg;
 
-// rendring function ..
-render : function(){
+          }}     
 
-    let parent = document.getElementById('salmonProject');
+         
+          
 
-    let UL = document.createElement('ul');
-    
-    parent.appendChild(UL);
-    
-    UL.textContent = 'Seattle';
+let seattle = new Shop('Seattle', 23, 65, 6.3);
+let tokyo = new Shop('Tokyo', 3, 24, 1.2);
+let dubai = new Shop('Dubai', 11, 38, 3.7);
+let paris = new Shop('Paris', 20, 38, 2.3);
+let lima = new Shop('Lima', 2, 16, 4.6);
 
-    // some for loops to change from am to pm ..
-    
-    for(let i = 0 ; i <this.avgCookies.length ; i++){
+let parent = document.getElementById('salmonProject');
 
+let table = document.createElement('table');
 
-        if( i < 6){
-               
-        let LI = document.createElement('li');
-    
-        UL.appendChild(LI);
-    
-        LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
-        }
-    
-        else{
-
-        let LI = document.createElement('li');
-    
-        UL.appendChild(LI);
-    
-        LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
-    
-        }
-    }
+parent.appendChild(table);
 
 
-    // generating a total number of all cookies .. 
 
-    let Total = document.createElement('li');
-    
-    UL.appendChild(Total);
-    
-    Total.textContent = ` Total : ${Math.floor(this.sum)}`;
-
-}
+function firstRow(){
 
 
-}
-    // a method for generating a random number from W3SCHOOL
+  let TR = document.createElement('tr');
 
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
-}
+  table.appendChild(TR);
 
-// function invokes
+  let TH = document.createElement('th');
 
+  TR.appendChild(TH);
 
-Seattle.getRandomCustomer();
-Seattle.getAvgCookies();
-Seattle.render();
+  TH.textContent = " Shop Name " + '|';
+  
+  
 
+  for(let i=0 ; i < hours.length ; i++){
 
- let Tokyo = {
+     let TH = document.createElement('td');
 
-   sum :0,
-   name : 'Tokyo',
-   minCust : 3,
-   maxCust : 24,
-   avg : 1.2,
-   randomCustomer: [],
-   avgCookies: [],
+     TR.appendChild(TH);
 
-   //Generating a random custmor number for each hour .. 
+     TH.textContent = `${hours[i]} |`;
 
-getRandomCustomer : function(){
-  for(let i = 0 ; i < hours.length ; i++){
-       this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
-  }},
+     if ( i == 13){
 
-// pushing into cookies array a random number of request ..
+        let TH = document.createElement('th');
 
-getAvgCookies : function(){
-    for(let i = 0 ; i < this.randomCustomer.length ; i++){
-        
-        this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
-        this.sum += this.randomCustomer[i]*this.avg;
-    }},
+        TR.appendChild(TH);
 
-// rendring function ..
-render : function(){
-
-    let parent = document.getElementById('salmonProject');
-
-    let UL = document.createElement('ul');
-    
-    parent.appendChild(UL);
-    
-    UL.textContent = 'Tokyo';
-
-    // some for loops to change from am to pm ..
-    
-    for(let i = 0 ; i <this.avgCookies.length ; i++){
-
-
-        if( i < 6){
-               
-        let LI = document.createElement('li');
-    
-        UL.appendChild(LI);
-    
-        LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
-        }
-    
-        else{
-
-        let LI = document.createElement('li');
-    
-        UL.appendChild(LI);
-    
-        LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
-    
-        }
-    }
-
-
-    // generating a total number of all cookies .. 
-
-    let Total = document.createElement('li');
-    
-    UL.appendChild(Total);
-    
-    Total.textContent = ` Total : ${Math.floor(this.sum)}`;
-
+        TH.textContent = 'Daily Location Total';
+     }
 }}
 
-Tokyo.getRandomCustomer();
-Tokyo.getAvgCookies();
-Tokyo.render();
+Shop.prototype.Render = function(){
 
 
-let Dubai = {
+    let sum= 0;
+    let TR = document.createElement('tr');
 
-    sum :0,
-    name : 'Dubai',
-    minCust : 11,
-    maxCust : 38,
-    avg : 3.7,
-    randomCustomer: [],
-    avgCookies: [],
+    table.appendChild(TR);
+
+    let TD = document.createElement('td');
+   
+    TR.appendChild(TD);
+   
+    TD.textContent = `${this.name} |`;
+
+    for(let j=0 ; j < hours.length ; j++){
+        
+        let TD = document.createElement('td');
+
+        TR.appendChild(TD);
+
+        TD.textContent = `${this.avgCookies[j]} |`;
+
+        sum += this.avgCookies[j];
+
+        if ( j == 13){
+
+            let TD = document.createElement('td');
+
+            TR.appendChild(TD);
+
+            TD.textContent = sum;
+        }
+     }}
+
+
+
+function lastRow(){
+
+    let sum = 0;
+    
+
+    let TR = document.createElement('tr');
+
+    table.appendChild(TR);
+
+    let TD = document.createElement('td');
+
+    TR.appendChild(TD);
+
+    TD.textContent = 'Total |';
+
+    for ( let i = 0 ; i < hours.length ; i++){
+
+        let sum2 = 0;
+
+        let TD = document.createElement('td');
+        TR.appendChild(TD);
+
+        for(let j = 0 ; j < shops.length ; j++){
+              
+              
+              sum2 += shops[j].avgCookies[i];
+            
+            }
+
+        totalPerHours.push(sum2);
+        TD.textContent = totalPerHours[i];
+
+           
+    }
+
+         let TdForSumOfShopsHours = document.createElement('td');
+
+        for ( let i = 0 ; i < shops.length ; i++){
+
+        
+
+        for(let j = 0 ; j < hours.length ; j++){
+
+            
+            sum += shops[i].avgCookies[j];
+
+             }
+
+             
+            
+       }
+
+       TR.appendChild(TdForSumOfShopsHours);
+
+       TdForSumOfShopsHours.textContent = sum;
+    
+    }     
+
+firstRow();
+
+for( let i = 0 ; i < shops.length ; i++){
+
+    shops[i].getRandomCustomer();
+    shops[i].getAvgCookies();
+    shops[i].Render();
+    
+
+}
+
+lastRow();
+
+
+
+
+
+// let shops[i] = {
+//    sum :0,
+//    name : 'seattle',
+//    minCust : 23,
+//    maxCust : 65,
+//    avg : 6.3,
+//    randomCustomer: [],
+//    avgCookies: [],
+
+//    //Generating a random custmor number for each hour .. 
+
+// getRandomCustomer : function(){
+//   for(let i = 0 ; i < hours.length ; i++){
+//     this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
+       
+//   }},
+
+// // pushing into cookies array a random number of request ..
+
+// getAvgCookies : function(){
+//     for(let i = 0 ; i < this.randomCustomer.length ; i++){
+        
+//         this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
+//         this.sum += this.randomCustomer[i]*this.avg;
+//     }},
+
+// // rendring function ..
+// render : function(){
+
+//     let parent = document.getElementById('salmonProject');
+
+//     let UL = document.createElement('ul');
+    
+    // parent.appendChild(UL);
+    
+//     UL.textContent = 'Seattle';
+
+//     // some for loops to change from am to pm ..
+    
+//     for(let i = 0 ; i <this.avgCookies.length ; i++){
+
+
+//         if( i < 6){
+               
+//         let LI = document.createElement('li');
+    
+//         UL.appendChild(LI);
+    
+//         LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
+//         }
+    
+//         else{
+
+//         let LI = document.createElement('li');
+    
+//         UL.appendChild(LI);
+    
+//         LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
+    
+//         }
+//     }
+
+
+//     // generating a total number of all cookies .. 
+
+//     let Total = document.createElement('li');
+    
+//     UL.appendChild(Total);
+    
+//     Total.textContent = ` Total : ${Math.floor(this.sum)}`;
+
+// }
+
+
+// }
+//     // a method for generating a random number from W3SCHOOL
+
+// function randomNumber(min, max) {
+//     return Math.floor(Math.random() * (max - min + 1) ) + min;
+// }
+
+// // function invokes
+
+
+// Seattle.getRandomCustomer();
+// Seattle.getAvgCookies();
+// Seattle.render();
+
+
+//  let Tokyo = {
+
+//    sum :0,
+//    name : 'Tokyo',
+//    minCust : 3,
+//    maxCust : 24,
+//    avg : 1.2,
+//    randomCustomer: [],
+//    avgCookies: [],
+
+//    //Generating a random custmor number for each hour .. 
+
+// getRandomCustomer : function(){
+//   for(let i = 0 ; i < hours.length ; i++){
+//        this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
+//   }},
+
+// // pushing into cookies array a random number of request ..
+
+// getAvgCookies : function(){
+//     for(let i = 0 ; i < this.randomCustomer.length ; i++){
+        
+//         this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
+//         this.sum += this.randomCustomer[i]*this.avg;
+//     }},
+
+// // rendring function ..
+// render : function(){
+
+//     let parent = document.getElementById('salmonProject');
+
+//     let UL = document.createElement('ul');
+    
+//     parent.appendChild(UL);
+    
+//     UL.textContent = 'Tokyo';
+
+//     // some for loops to change from am to pm ..
+    
+//     for(let i = 0 ; i <this.avgCookies.length ; i++){
+
+
+//         if( i < 6){
+               
+//         let LI = document.createElement('li');
+    
+//         UL.appendChild(LI);
+    
+//         LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
+//         }
+    
+//         else{
+
+//         let LI = document.createElement('li');
+    
+//         UL.appendChild(LI);
+    
+//         LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
+    
+//         }
+//     }
+
+
+//     // generating a total number of all cookies .. 
+
+//     let Total = document.createElement('li');
+    
+//     UL.appendChild(Total);
+    
+//     Total.textContent = ` Total : ${Math.floor(this.sum)}`;
+
+// }}
+
+// Tokyo.getRandomCustomer();
+// Tokyo.getAvgCookies();
+// Tokyo.render();
+
+
+// let Dubai = {
+
+//     sum :0,
+//     name : 'Dubai',
+//     minCust : 11,
+//     maxCust : 38,
+//     avg : 3.7,
+//     randomCustomer: [],
+//     avgCookies: [],
  
-    //Generating a random custmor number for each hour .. 
+//     //Generating a random custmor number for each hour .. 
  
- getRandomCustomer : function(){
-   for(let i = 0 ; i < hours.length ; i++){
-        this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
-   }},
+//  getRandomCustomer : function(){
+//    for(let i = 0 ; i < hours.length ; i++){
+//         this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
+//    }},
  
- // pushing into cookies array a random number of request ..
+//  // pushing into cookies array a random number of request ..
  
- getAvgCookies : function(){
-     for(let i = 0 ; i < this.randomCustomer.length ; i++){
+//  getAvgCookies : function(){
+//      for(let i = 0 ; i < this.randomCustomer.length ; i++){
          
-         this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
-         this.sum += this.randomCustomer[i]*this.avg;
-     }},
+//          this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
+//          this.sum += this.randomCustomer[i]*this.avg;
+//      }},
  
- // rendring function ..
- render : function(){
+//  // rendring function ..
+//  render : function(){
  
-     let parent = document.getElementById('salmonProject');
+//      let parent = document.getElementById('salmonProject');
  
-     let UL = document.createElement('ul');
+//      let UL = document.createElement('ul');
      
-     parent.appendChild(UL);
+//      parent.appendChild(UL);
      
-     UL.textContent = 'Dubai';
+//      UL.textContent = 'Dubai';
  
-     // some for loops to change from am to pm ..
+//      // some for loops to change from am to pm ..
      
-     for(let i = 0 ; i <this.avgCookies.length ; i++){
+//      for(let i = 0 ; i <this.avgCookies.length ; i++){
  
  
-         if( i < 6){
+//          if( i < 6){
                 
-         let LI = document.createElement('li');
+//          let LI = document.createElement('li');
      
-         UL.appendChild(LI);
+//          UL.appendChild(LI);
      
-         LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
-         }
+//          LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
+//          }
      
-         else{
+//          else{
  
-         let LI = document.createElement('li');
+//          let LI = document.createElement('li');
      
-         UL.appendChild(LI);
+//          UL.appendChild(LI);
      
-         LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
+//          LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
      
-         }
-     }
+//          }
+//      }
  
  
-     // generating a total number of all cookies .. 
+//      // generating a total number of all cookies .. 
  
-     let Total = document.createElement('li');
+//      let Total = document.createElement('li');
      
-     UL.appendChild(Total);
+//      UL.appendChild(Total);
      
-     Total.textContent = ` Total : ${Math.floor(this.sum)}`;
+//      Total.textContent = ` Total : ${Math.floor(this.sum)}`;
  
- }}
+//  }}
  
- Dubai.getRandomCustomer();
- Dubai.getAvgCookies();
- Dubai.render();
+//  Dubai.getRandomCustomer();
+//  Dubai.getAvgCookies();
+//  Dubai.render();
 
 
- let Paris = {
+//  let Paris = {
 
-    sum :0,
-    name : 'Paris',
-    minCust : 20,
-    maxCust : 38,
-    avg : 2.3,
-    randomCustomer: [],
-    avgCookies: [],
+//     sum :0,
+//     name : 'Paris',
+//     minCust : 20,
+//     maxCust : 38,
+//     avg : 2.3,
+//     randomCustomer: [],
+//     avgCookies: [],
  
-    //Generating a random custmor number for each hour .. 
+//     //Generating a random custmor number for each hour .. 
  
- getRandomCustomer : function(){
-   for(let i = 0 ; i < hours.length ; i++){
-        this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
-   }},
+//  getRandomCustomer : function(){
+//    for(let i = 0 ; i < hours.length ; i++){
+//         this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
+//    }},
  
- // pushing into cookies array a random number of request ..
+//  // pushing into cookies array a random number of request ..
  
- getAvgCookies : function(){
-     for(let i = 0 ; i < this.randomCustomer.length ; i++){
+//  getAvgCookies : function(){
+//      for(let i = 0 ; i < this.randomCustomer.length ; i++){
          
-         this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
-         this.sum += this.randomCustomer[i]*this.avg;
-     }},
+//          this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
+//          this.sum += this.randomCustomer[i]*this.avg;
+//      }},
  
- // rendring function ..
- render : function(){
+//  // rendring function ..
+//  render : function(){
  
-     let parent = document.getElementById('salmonProject');
+//      let parent = document.getElementById('salmonProject');
  
-     let UL = document.createElement('ul');
+//      let UL = document.createElement('ul');
      
-     parent.appendChild(UL);
+//      parent.appendChild(UL);
      
-     UL.textContent = 'Paris';
+//      UL.textContent = 'Paris';
  
-     // some for loops to change from am to pm ..
+//      // some for loops to change from am to pm ..
      
-     for(let i = 0 ; i <this.avgCookies.length ; i++){
+//      for(let i = 0 ; i <this.avgCookies.length ; i++){
  
  
-         if( i < 6){
+//          if( i < 6){
                 
-         let LI = document.createElement('li');
+//          let LI = document.createElement('li');
      
-         UL.appendChild(LI);
+//          UL.appendChild(LI);
      
-         LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
-         }
+//          LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
+//          }
      
-         else{
+//          else{
  
-         let LI = document.createElement('li');
+//          let LI = document.createElement('li');
      
-         UL.appendChild(LI);
+//          UL.appendChild(LI);
      
-         LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
+//          LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
      
-         }
-     }
+//          }
+//      }
  
  
-     // generating a total number of all cookies .. 
+//      // generating a total number of all cookies .. 
  
-     let Total = document.createElement('li');
+//      let Total = document.createElement('li');
      
-     UL.appendChild(Total);
+//      UL.appendChild(Total);
      
-     Total.textContent = ` Total : ${Math.floor(this.sum)}`;
+//      Total.textContent = ` Total : ${Math.floor(this.sum)}`;
  
- }}
+//  }}
  
- Paris.getRandomCustomer();
- Paris.getAvgCookies();
- Paris.render();
+//  Paris.getRandomCustomer();
+//  Paris.getAvgCookies();
+//  Paris.render();
 
- let Lima = {
+//  let Lima = {
 
-    sum :0,
-    name : 'Lima',
-    minCust : 2,
-    maxCust : 16,
-    avg : 4.6,
-    randomCustomer: [],
-    avgCookies: [],
+//     sum :0,
+//     name : 'Lima',
+//     minCust : 2,
+//     maxCust : 16,
+//     avg : 4.6,
+//     randomCustomer: [],
+//     avgCookies: [],
  
-    //Generating a random custmor number for each hour .. 
+//     //Generating a random custmor number for each hour .. 
  
- getRandomCustomer : function(){
-   for(let i = 0 ; i < hours.length ; i++){
-        this.randomCustomer.push(randomNumber(this.minCust,this.maxCust)); 
-   }},
+//  getRandomCustomer : function(){
+//    for(let i = 0 ; i < hours.length ; i++){
+//         this.randomCustomer.push(randomNumber(this.minCust,this.maxCust)); 
+//    }},
  
- // pushing into cookies array a random number of request ..
+//  // pushing into cookies array a random number of request ..
  
- getAvgCookies : function(){
-     for(let i = 0 ; i < this.randomCustomer.length ; i++){
+//  getAvgCookies : function(){
+//      for(let i = 0 ; i < this.randomCustomer.length ; i++){
          
-         this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
-         this.sum += this.randomCustomer[i]*this.avg;
-     }},
+//          this.avgCookies.push(Math.floor(this.randomCustomer[i]*this.avg));
+//          this.sum += this.randomCustomer[i]*this.avg;
+//      }},
  
- // rendring function ..
- render : function(){
+//  // rendring function ..
+//  render : function(){
  
-     let parent = document.getElementById('salmonProject');
+//      let parent = document.getElementById('salmonProject');
  
-     let UL = document.createElement('ul');
+//      let UL = document.createElement('ul');
      
-     parent.appendChild(UL);
+//      parent.appendChild(UL);
      
-     UL.textContent = 'Lima';
+//      UL.textContent = 'Lima';
  
-     // some for loops to change from am to pm ..
+//      // some for loops to change from am to pm ..
      
-     for(let i = 0 ; i <this.avgCookies.length ; i++){
+//      for(let i = 0 ; i <this.avgCookies.length ; i++){
  
  
-         if( i < 6){
+//          if( i < 6){
                 
-         let LI = document.createElement('li');
+//          let LI = document.createElement('li');
      
-         UL.appendChild(LI);
+//          UL.appendChild(LI);
      
-         LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
-         }
+//          LI.textContent = `${hours[i]} am : ${this.avgCookies[i]} cookies`;
+//          }
      
-         else{
+//          else{
  
-         let LI = document.createElement('li');
+//          let LI = document.createElement('li');
      
-         UL.appendChild(LI);
+//          UL.appendChild(LI);
      
-         LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
+//          LI.textContent = `${hours[i]} pm : ${this.avgCookies[i]} cookies`;
      
-         }
-     }
+//          }
+//      }
  
  
-     // generating a total number of all cookies .. 
+//      // generating a total number of all cookies .. 
  
-     let Total = document.createElement('li');
+//      let Total = document.createElement('li');
      
-     UL.appendChild(Total);
+//      UL.appendChild(Total);
      
-     Total.textContent = ` Total : ${Math.floor(this.sum)}`;
+//      Total.textContent = ` Total : ${Math.floor(this.sum)}`;
  
- }}
+//  }}
  
- Lima.getRandomCustomer();
- Lima.getAvgCookies();
- Lima.render();
+//  Lima.getRandomCustomer();
+//  Lima.getAvgCookies();
+//  Lima.render();
