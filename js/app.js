@@ -15,7 +15,8 @@ let Seattle = {
 
 getRandomCustomer : function(){
   for(let i = 0 ; i < hours.length ; i++){
-       this.randomCustomer[i] = randomNumber(this.minCust,this.maxCust); 
+    this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
+       
   }},
 
 // pushing into cookies array a random number of request ..
@@ -104,7 +105,7 @@ Seattle.render();
 
 getRandomCustomer : function(){
   for(let i = 0 ; i < hours.length ; i++){
-       this.randomCustomer[i] = randomNumber(this.minCust,this.maxCust); 
+       this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
   }},
 
 // pushing into cookies array a random number of request ..
@@ -182,7 +183,7 @@ let Dubai = {
  
  getRandomCustomer : function(){
    for(let i = 0 ; i < hours.length ; i++){
-        this.randomCustomer[i] = randomNumber(this.minCust,this.maxCust); 
+        this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
    }},
  
  // pushing into cookies array a random number of request ..
@@ -260,7 +261,7 @@ let Dubai = {
  
  getRandomCustomer : function(){
    for(let i = 0 ; i < hours.length ; i++){
-        this.randomCustomer[i] = randomNumber(this.minCust,this.maxCust); 
+        this.randomCustomer.push(randomNumber(this.minCust,this.maxCust));
    }},
  
  // pushing into cookies array a random number of request ..
@@ -337,7 +338,7 @@ let Dubai = {
  
  getRandomCustomer : function(){
    for(let i = 0 ; i < hours.length ; i++){
-        this.randomCustomer[i] = randomNumber(this.minCust,this.maxCust); 
+        this.randomCustomer.push(randomNumber(this.minCust,this.maxCust)); 
    }},
  
  // pushing into cookies array a random number of request ..
