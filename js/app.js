@@ -181,6 +181,8 @@ function lastRow(){
 
              }
 
+             console.log(sum);
+
              
             
        }
