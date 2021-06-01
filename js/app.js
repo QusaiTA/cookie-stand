@@ -159,6 +159,7 @@ function lastRow(){
               
               
               sum2 += shops[j].avgCookies[i];
+              sum += shops[j].avgCookies[i];
             
             }
 
@@ -170,22 +171,20 @@ function lastRow(){
 
          let TdForSumOfShopsHours = document.createElement('td');
 
-        for ( let i = 0 ; i < shops.length ; i++){
+    //     for ( let i = 0 ; i < shops.length ; i++){
 
         
 
-        for(let j = 0 ; j < hours.length ; j++){
+    //     for(let j = 0 ; j < hours.length ; j++){
 
             
-            sum += shops[i].avgCookies[j];
+    //         sum += shops[i].avgCookies[j];
 
-             }
-
-             console.log(sum);
+    //          }
 
              
             
-       }
+    //    }
 
        TR.appendChild(TdForSumOfShopsHours);
 
