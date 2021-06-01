@@ -171,6 +171,9 @@ function lastRow(){
 
          let TdForSumOfShopsHours = document.createElement('td');
 
+
+    // solution for vertical adding ....      
+
     //     for ( let i = 0 ; i < shops.length ; i++){
 
         
