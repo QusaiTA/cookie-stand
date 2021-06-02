@@ -140,6 +140,8 @@ function lastRow(){
 
     let TR = document.createElement('tr');
 
+    
+
     table.appendChild(TR);
 
     let TD = document.createElement('td');
@@ -160,11 +162,14 @@ function lastRow(){
               
               sum2 += shops[j].avgCookies[i];
               sum += shops[j].avgCookies[i];
+
+            console.log(sum);
+              console.log(sum2);
             
             }
 
-        totalPerHours.push(sum2);
-        TD.textContent = totalPerHours[i];
+        // totalPerHours.push(sum2);
+        TD.textContent = sum2;
 
            
     }
@@ -193,7 +198,75 @@ function lastRow(){
 
        TdForSumOfShopsHours.textContent = sum;
     
-    }     
+    }   
+    
+    
+    let ShopsForm = document.getElementById("ShopsForm");
+    //console.log(ShopsForm);
+
+    ShopsForm.addEventListener("submit" , submitter);
+
+    function submitter (event){
+
+        //table.textContent = "";
+
+        event.preventDefault();
+
+         //table.textContent = " ";
+
+        let name = event.target.LocationName.value ;
+        //console.log(name);
+
+        let min = event.target.MinCustomer.value;
+        //console.log(min);
+
+        let max = event.target.MaxCustomer.value;
+        //console.log(max);
+
+        let avg = event.target.AverageCookies.value;
+        //console.log(avg);
+
+        let addedLocations = new Shop(name,min,max,avg);
+
+
+      
+
+        
+
+    
+        
+
+        
+
+
+        let tableLength = table.rows.length-1;
+
+        table.deleteRow(tableLength);
+
+       
+
+         addedLocations.getRandomCustomer();
+         addedLocations.getAvgCookies();
+        addedLocations.Render();
+        console.log(shops);
+
+
+
+
+        lastRow();
+
+        console.log(shops);
+
+
+                                       
+        
+
+
+
+
+
+
+     }
 
 firstRow();
 
@@ -207,6 +280,8 @@ for( let i = 0 ; i < shops.length ; i++){
 }
 
 lastRow();
+
+
 
 
 
@@ -610,3 +685,4 @@ lastRow();
 //  Lima.getRandomCustomer();
 //  Lima.getAvgCookies();
 //  Lima.render();
+    
