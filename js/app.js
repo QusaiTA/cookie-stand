@@ -223,7 +223,7 @@ function lastRow(){
         let max = event.target.MaxCustomer.value;
         //console.log(max);
 
-        let avg = event.target.AverageCookies.value;
+        let avg = Number(event.target.AverageCookies.value);
         //console.log(avg);
 
         let addedLocations = new Shop(name,min,max,avg);
