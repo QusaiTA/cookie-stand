@@ -60,6 +60,7 @@ let parent = document.getElementById('salmonProject');
 
 let table = document.createElement('table');
 
+
 parent.appendChild(table);
 
 
