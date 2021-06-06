@@ -7,6 +7,8 @@ header{
 
 body{
     background-color: darkcyan;
+    font-family: 'Stint Ultra Condensed', cursive;
+    font-family: 'Suez One', serif;
 }
 header a {
 
@@ -15,12 +17,14 @@ header a {
     font-size: larger;
     font-weight: bold;
     color: black;
+    
 
 }
 fieldset{
     margin-top: 30px;
     width:300px;
     margin-left: 600px;
+    background-color: coral;
 }
 
 fieldset label{
