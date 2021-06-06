@@ -76,7 +76,7 @@ function firstRow(){
 
   TR.appendChild(TH);
 
-  TH.textContent = " Shop Name " + '|';
+  TH.textContent = " Shop Name ";
   
   
 
@@ -86,7 +86,7 @@ function firstRow(){
 
      TR.appendChild(TH);
 
-     TH.textContent = `${hours[i]} |`;
+     TH.textContent = `${hours[i]} `;
 
      if ( i == 13){
 
@@ -110,7 +110,7 @@ Shop.prototype.Render = function(){
    
     TR.appendChild(TD);
    
-    TD.textContent = `${this.name} |`;
+    TD.textContent = `${this.name} `;
 
     for(let j=0 ; j < hours.length ; j++){
         
@@ -118,7 +118,7 @@ Shop.prototype.Render = function(){
 
         TR.appendChild(TD);
 
-        TD.textContent = `${this.avgCookies[j]} |`;
+        TD.textContent = `${this.avgCookies[j]} `;
 
         sum += this.avgCookies[j];
 
